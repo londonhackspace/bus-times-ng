@@ -12,7 +12,7 @@ curses.init_pair(2, curses.COLOR_YELLOW, curses.COLOR_BLACK)
 curses.init_pair(3, curses.COLOR_RED,    curses.COLOR_BLACK)
 
 win.clear();
-win.addstr( 0, 0, "Fetching data..." );
+win.addstr( 4, 4, "Fetching data..." );
 win.refresh();
 
 if len(sys.argv) == 3:
@@ -27,12 +27,13 @@ while True:
     win.clear()
     try:
       name = api.busstop(stop)
-      win.addstr(0,0, "Departures for " + name)
+      win.addstr(1,2, "Departures for:")
+      win.addstr(2,2, name)
       arrivals = api.bus_arrivals(stop)
     except ValueError:
       win.attron(curses.A_BOLD)
       win.attron(curses.color_pair(3))
-      win.addstr(1, 1, "Network failure / offline")
+      win.addstr(1, 2, "Network failure / offline")
       win.attroff(curses.color_pair(3))
       win.attroff(curses.A_BOLD)
       win.refresh()
@@ -51,7 +52,7 @@ while True:
     for i,a in enumerate(arrivals):
       col = (i % 2) + 1
       win.attron(curses.color_pair(col))
-      win.addstr(2 + i, 4, fmt % a)
+      win.addstr(5 + i, 5, fmt % a)
       win.attroff(curses.color_pair(col))
     
     win.attroff(curses.A_BOLD)

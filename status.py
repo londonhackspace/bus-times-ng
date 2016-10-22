@@ -72,7 +72,7 @@ class TFL_API:
     if not status:
       self.nicedump(data)
     if letter and towards:
-      return "%s (%s), to: %s (%s)" % (name, letter, towards, direction)
+      return "%s (%s), to:\n  %s (%s)" % (name, letter, towards, direction)
     else:
       return "%s" % (name)
 
@@ -91,7 +91,13 @@ class TFL_API:
       time = time.strftime('%H:%M:%S')
 
 #      print "%4s to %20s : %s" % (bus["lineName"], bus["destinationName"], time)
-      ret.append((bus["lineName"], bus["destinationName"], time))
+      line = bus["lineName"]
+      if line == "London Overground":
+        line = "Overground"
+      dest = bus["destinationName"]
+      if dest.endswith(" Rail Station"):
+        dest = dest[:dest.find(" Rail Station")]
+      ret.append((line, dest, time))
 
     return ret
 
