@@ -51,9 +51,13 @@ while True:
     
     for i,a in enumerate(arrivals):
       col = (i % 2) + 1
-      win.attron(curses.color_pair(col))
-      win.addstr(5 + i, 5, fmt % a)
-      win.attroff(curses.color_pair(col))
+      try:
+        win.attron(curses.color_pair(col))
+        win.addstr(5 + i, 5, fmt % a)
+        win.attroff(curses.color_pair(col))
+      except:
+        # we sometimes get curses errors
+        pass
     
     win.attroff(curses.A_BOLD)
     win.refresh()
