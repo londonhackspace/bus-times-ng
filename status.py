@@ -90,6 +90,12 @@ class TFL_API:
       time = time.astimezone(tz.tzlocal())
       time = time.strftime('%H:%M:%S')
 
+#      print bus
+#      print
+
+#      for t in ("platformName", "direction", "bearing", "towards"):
+#        print t + ": " + bus[t]
+
 #      print "%4s to %20s : %s" % (bus["lineName"], bus["destinationName"], time)
       line = bus["lineName"]
       if line == "London Overground":
@@ -108,8 +114,8 @@ if __name__ == "__main__":
   else:
     api = TFL_API(None, None)
 
-  api.rail_status()
-  print
+#  api.rail_status()
+#  print
 
   def printit(ts):
     ls = [0,0,0]
@@ -121,15 +127,15 @@ if __name__ == "__main__":
     for t in ts:
       print fmt % t
 
-  print api.busstop("490011243E")
-  a = api.bus_arrivals("490011243E")
-  printit(a)
-  print
+#  print api.busstop("490011243E")
+#  a = api.bus_arrivals("490011243E")
+#  printit(a)
+#  print
 
-  print api.busstop("490011243W")
-  a = api.bus_arrivals("490011243W")
-  printit(a)
-  print
+#  print api.busstop("490011243W")
+#  a = api.bus_arrivals("490011243W")
+#  printit(a)
+#  print
 
   # cambridge heath
   print api.busstop("910GCAMHTH")
