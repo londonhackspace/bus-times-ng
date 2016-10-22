@@ -30,7 +30,7 @@ while True:
       win.addstr(1,2, "Departures for:")
       win.addstr(2,2, name)
       arrivals = api.bus_arrivals(stop)
-    except ValueError:
+    except (ValueError, IOError):
       win.attron(curses.A_BOLD)
       win.attron(curses.color_pair(3))
       win.addstr(1, 2, "Network failure / offline")
